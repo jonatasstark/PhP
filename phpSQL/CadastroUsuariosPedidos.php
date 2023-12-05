@@ -72,4 +72,16 @@ function inserirDadosPedido($conn, $produto, $quantidade) {
     }
 }
 
+// Inserir dados dos usuários
+inserirDadosUsuarios($conn, "Eduardo", "eduardo@example.com");
+inserirDadosUsuarios($conn, "Laura", "laura@example.com");
+inserirDadosUsuarios($conn, "Rita", "rita@example.com");
+inserirDadosUsuarios($conn, "Gabriel", "gabriel@example.com");
+
+// Inserir dados das compras
+inserirDadosPedido($conn, "Livro de Ficção", 3);
+inserirDadosPedido($conn, "Fones de Ouvido", 1);
+inserirDadosPedido($conn, "Cadeira de Escritório", 2);
+inserirDadosPedido($conn, "Mochila", 1);
+
 ?>

@@ -71,4 +71,22 @@ function inserirDadosAtribuicoes($conn, $id_projeto, $id_funcionario) {
         echo "Por favor, preencha todos os campos do formulário.\n";
     }
 }
+
+// Inserir os dados dos projetos
+$projeto1 = "Sistema de Controle";
+$descricao1 = "Desenvolvimento de um sistema interno";
+inserirDadosProjetos($conn, $projeto1, $descricao1);
+
+$projeto2 = "Portal Corporativo";
+$descricao2 = "Desenvolvimento de um portal para clientes";
+inserirDadosProjetos($conn, $projeto2, $descricao2);
+
+// Inserir os dados das atribuições
+$idprojeto1 = 1;
+$idfuncionario1 = 1;
+inserirDadosAtribuicoes($conn, $idprojeto1, $idfuncionario1);
+
+$idprojeto2 = 2;
+$idfuncionario2 = 2;
+inserirDadosAtribuicoes($conn, $idprojeto2, $idfuncionario2);
 ?>

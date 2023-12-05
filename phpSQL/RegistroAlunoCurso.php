@@ -69,5 +69,31 @@ function inserirDadosCursos($conn, $nome_curso, $instrutor) {
     }
 }
 
+// Inserir os dados dos alunos
+$aluno1 = "Lucas";
+$turma1 = "Turma A";
+inserirDadosAlunos($conn, $aluno1, $turma1);
+
+$aluno2 = "Julia";
+$turma2 = "Turma B";
+inserirDadosAlunos($conn, $aluno2, $turma2);
+
+inserirDadosAlunos($conn, "Paulo", "Turma C");
+
+inserirDadosAlunos($conn, "Lúcia", "Turma B");
+
+// Inserir os dados dos cursos
+$curso1 = "Matemática";
+$professor1 = "Professor Carlos";
+inserirDadosCursos($conn, $curso1, $professor1);
+
+$curso2 = "Ciências";
+$professor2 = "Professora Ana";
+inserirDadosCursos($conn, $curso2, $professor2);
+
+inserirDadosCursos($conn, "História", "Professor Martins");
+
+inserirDadosCursos($conn, "Geografia", "Professora Silva");
+
 $conn->close();
 ?>

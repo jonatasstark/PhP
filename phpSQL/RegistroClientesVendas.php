@@ -72,4 +72,29 @@ function inserirDadosVendas($conn, $produto_vendido, $valor) {
     }
 }
 
+// Inserir os dados dos clientes
+$cliente1 = "Ana";
+$email1 = "ana@example.com";
+inserirDadosClientes($conn, $cliente1, $email1);
+
+$cliente2 = "Pedro";
+$email2 = "pedro@example.com";
+inserirDadosClientes($conn, $cliente2, $email2);
+
+inserirDadosClientes($conn, "Carlos", "carlos@email.com");
+
+inserirDadosClientes($conn, "Sofia", "sofia@email.com");
+
+// Inserir os dados das vendas
+$vendas1 = "Celular";
+$valor1 = 1200;
+inserirDadosVendas($conn, $vendas1, $valor1);
+
+$vendas2 = "Fones";
+$valor2 = 150;
+inserirDadosVendas($conn, $vendas2, $valor2);
+
+inserirDadosVendas($conn, "Smartphone", 1500);
+
+inserirDadosVendas($conn, "Vestido", 120);
 ?>

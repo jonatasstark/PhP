@@ -5,18 +5,21 @@ $username = "root";
 $password = "";
 $dbname = "pessoas";
 
+// Conexão banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
+// Criação das tabelas
 $sql_fornecedores = "CREATE TABLE IF NOT EXISTS fornecedores (
     id_fornecedor INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     contato VARCHAR(100) NOT NULL
 )";
 
+// executar query
 if ($conn->query($sql_fornecedores) === TRUE) {
     echo "Tabela 'fornecedores' criada com sucesso\n";
 } else {
@@ -31,12 +34,14 @@ $sql_compras = "CREATE TABLE IF NOT EXISTS compras (
     FOREIGN KEY (id_fornecedor) REFERENCES fornecedores(id_fornecedor)
 )";
 
+// executar query
 if ($conn->query($sql_compras) === TRUE) {
     echo "Tabela 'compras' criada com sucesso\n";
 } else {
     echo "\nErro ao criar tabela: " . $conn->error;
 }
 
+// função para inserir dados em fornecedores
 function inserirDadosFornecedores($conn, $nome, $contato) {
     if (!empty($nome) && !empty($contato)) {
         $sql = "INSERT INTO fornecedores (nome, contato) VALUES ('$nome', '$contato')";
@@ -51,6 +56,7 @@ function inserirDadosFornecedores($conn, $nome, $contato) {
     }
 }
 
+// função para inserir dados em compras
 function inserirDadosCompras($conn, $id_fornecedor, $produto_comprado, $quantidade) {
     if (!empty($id_fornecedor) && !empty($produto_comprado) && !empty($quantidade)) {
         $sql = "INSERT INTO compras (id_fornecedor, produto_comprado, quantidade) VALUES ('$id_fornecedor', '$produto_comprado', '$quantidade')";
@@ -65,6 +71,13 @@ function inserirDadosCompras($conn, $id_fornecedor, $produto_comprado, $quantida
     }
 }
 
+// Inserir os dados dos fornecedores
+inserirDadosFornecedores($conn, "Empresa A", "contato@empresaA.com");
+inserirDadosFornecedores($conn, "Empresa B", "contato@empresaB.com");
+
+//Inserir os dados das compras
+inserirDadosCompras($conn, 1, "Peças de Computador", 100);
+inserirDadosCompras($conn, 2, "Material de Escritório", 500);
 
 $conn->close();
 ?>

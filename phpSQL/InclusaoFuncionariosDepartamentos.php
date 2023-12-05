@@ -70,5 +70,23 @@ function inserirDadosDepartamentos($conn, $nome_departamento) {
     }
 }
 
+// Inserir os dados dos funcionários
+$funcionario1 = "Luiz";
+$cargo1 = "Analista";
+inserirDadosFuncionarios($conn, $funcionario1, $cargo1);
 
+$funcionario2 = "Carla";
+$cargo2 = "Gerente";
+inserirDadosFuncionarios($conn, $funcionario2, $cargo2);
+
+inserirDadosFuncionarios($conn, "Pedro", "Desenvolvedor");
+
+inserirDadosFuncionarios($conn, "Mariana", "Analista de Dados");
+
+// Inserir os dados dos departamentos
+$departamento1 = "TI";
+inserirDadosDepartamentos($conn, $departamento1);
+
+$departamento2 = "Recursos Humanos";
+inserirDadosDepartamentos($conn, $departamento2);
 ?>

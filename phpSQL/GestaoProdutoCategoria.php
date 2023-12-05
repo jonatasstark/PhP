@@ -68,5 +68,11 @@ function inserirDadosCategoria($conn, $nome_categoria) {
     }
 }
 
+// Inserir dados dos produtos
+inserirDadosProduto($conn, "Computador", 2000);
+
+// Inserir dados da categoria
+inserirDadosCategoria($conn, "Eletrônico");
+
 
 ?>

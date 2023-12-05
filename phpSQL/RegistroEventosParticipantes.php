@@ -5,18 +5,21 @@ $username = "root";
 $password = "";
 $dbname = "pessoas";
 
+// Conexão Banco de Dados
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
+// Criação das tabelas
 $sql_eventos = "CREATE TABLE IF NOT EXISTS eventos (
     id_evento INT AUTO_INCREMENT PRIMARY KEY,
     nome_evento VARCHAR(255) NOT NULL,
     data DATE NOT NULL
 )";
 
+// Executar as querys
 if ($conn->query($sql_eventos) === TRUE) {
     echo "Tabela 'eventos' criada com sucesso\n";
 } else {
@@ -36,6 +39,7 @@ if ($conn->query($sql_participantes) === TRUE) {
     echo "\nErro ao criar tabela: " . $conn->error;
 }
 
+// função para inserir dados em eventos
 function inserirDadosEventos($conn, $nome_evento, $data) {
     if (!empty($nome_evento) && !empty($data)) {
         $sql = "INSERT INTO eventos (nome_evento, data) VALUES ('$nome_evento', '$data')";
@@ -50,6 +54,7 @@ function inserirDadosEventos($conn, $nome_evento, $data) {
     }
 }
 
+// função para inserir dados em participantes
 function inserirDadosParticipantes($conn, $id_evento, $nome_participante) {
     if (!empty($id_evento) && !empty($nome_participante)) {
         $sql = "INSERT INTO participantes (id_evento, nome_participante) VALUES ('$id_evento', '$nome_participante')";
@@ -63,6 +68,14 @@ function inserirDadosParticipantes($conn, $id_evento, $nome_participante) {
         echo "Por favor, preencha todos os campos do formulário.\n";
     }
 }
+
+// Inserir dados dos eventos
+inserirDadosEventos($conn, "Conferência de Tecnologia", "2023-12-15");
+inserirDadosEventos($conn, "Workshop de Marketing Digital", "2023-11-20");
+
+// Inserir dados dos participantes
+inserirDadosParticipantes($conn, 1, "Gabriel");
+inserirDadosParticipantes($conn, 2, "Sofia");
 
 $conn->close();
 ?>
