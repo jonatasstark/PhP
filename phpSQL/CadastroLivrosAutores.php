@@ -75,5 +75,25 @@ inserirDadosLivros($conn, "Introdução à Inteligência Artificial", 2019);
 inserirDadosAutores($conn, "Carlos Silva");
 inserirDadosAutores($conn, "Ana Souza");
 
+// função para deletar um livro com base no ID
+function deletarDadosLivros($conn, $idLivro) {
+    $sql = "DELETE FROM livros WHERE id_livro = '$idLivro'"; // remove uma linha da tabela
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Livro deletado com sucesso\n";
+
+        $sql2 = "DELETE FROM autores WHERE id_autor = '$idLivro'";
+
+        if ($conn->query($sql2) === TRUE) { // se o id inserido for encontrado, os autores também serão removidos
+            echo "Autores relacionados ao livro deletado também foram removidos";
+        }
+    
+    } else {
+        echo "Erro ao deletar, verifique o id";
+    }
+}
+
+deletarDadosLivros($conn, 1);
+
 $conn->close();
 ?>

@@ -95,5 +95,25 @@ inserirDadosCursos($conn, "História", "Professor Martins");
 
 inserirDadosCursos($conn, "Geografia", "Professora Silva");
 
+// função para deletar um aluno com base no ID
+function deletarDadosAlunos($conn, $idAluno) {
+    $sql = "DELETE FROM alunos WHERE id_aluno = '$idAluno'"; // remove uma linha da tabela
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Aluno deletado com sucesso\n";
+
+        $sql2 = "DELETE FROM cursos WHERE id_curso = '$idAluno'";
+
+        if ($conn->query($sql2) === TRUE) { // se o id inserido for encontrado, os cursos também serão removidos
+            echo "Cursos relacionados ao aluno deletado também foram removidos";
+        }
+    
+    } else {
+        echo "Erro ao deletar, verifique o id";
+    }
+}
+
+deletarDadosAlunos($conn, 1);
+
 $conn->close();
 ?>

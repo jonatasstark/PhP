@@ -74,5 +74,24 @@ inserirDadosProduto($conn, "Computador", 2000);
 // Inserir dados da categoria
 inserirDadosCategoria($conn, "Eletrônico");
 
+// função para deletar um produto com base no ID
+function deletarDadosProdutos($conn, $idProduto) {
+    $sql = "DELETE FROM produto WHERE id_produto = '$idProduto'"; // remove uma linha da tabela
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Produto deletado com sucesso\n";
+
+        $sql2 = "DELETE FROM categoria WHERE id_categoria = '$idUsuario'";
+
+        if ($conn->query($sql2) === TRUE) { // se o id inserido for encontrado, as categorias também serão removidas
+            echo "Categorias relacionadas ao produto deletado também foram removidas";
+        }
+    
+    } else {
+        echo "Erro ao deletar, verifique o id";
+    }
+}
+
+deletarDadosProdutos($conn, 1);
 
 ?>

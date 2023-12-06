@@ -76,6 +76,26 @@ inserirDadosExames($conn, "Raio-X", "Fratura identificada");
 inserirDadosPacientes($conn, "Mariana", "1995-06-10");
 inserirDadosPacientes($conn, "Rafael", "1987-09-25");
 
+// função para deletar um exame com base no ID
+function deletarDadosExames($conn, $idExame) {
+    $sql = "DELETE FROM exames WHERE id_exame = '$idExame'"; // remove uma linha da tabela
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Exame deletado com sucesso\n";
+
+        $sql2 = "DELETE FROM pacientes WHERE id_paciente = '$idExame'";
+
+        if ($conn->query($sql2) === TRUE) { // se o id inserido for encontrado, os pacientes também serão removidos
+            echo "Pacientes relacionados ao exame deletado também foram removidos";
+        }
+    
+    } else {
+        echo "Erro ao deletar, verifique o id";
+    }
+}
+
+deletarDadosExames($conn, 1);
+
 $conn->close();
 
 ?>

@@ -58,9 +58,9 @@ function inserirDadosClientes($conn, $nome, $email) {
 }
 
 //inserir dados vendas
-function inserirDadosVendas($conn, $produto_vendido, $valor) {
+function inserirDadosVendas($conn, $idCliente, $produto_vendido, $valor) {
     if (!empty($produto_vendido) && !empty($valor)) {
-        $sql = "INSERT INTO vendas (produto_vendido, valor) VALUES ('$produto_vendido', '$valor')";
+        $sql = "INSERT INTO vendas (id_cliente, produto_vendido, valor) VALUES ('$idCliente', '$produto_vendido', '$valor')";
 
         if ($conn->query($sql) === TRUE) {
             echo "Dados inseridos com sucesso em 'vendas'!\n";
@@ -88,13 +88,33 @@ inserirDadosClientes($conn, "Sofia", "sofia@email.com");
 // Inserir os dados das vendas
 $vendas1 = "Celular";
 $valor1 = 1200;
-inserirDadosVendas($conn, $vendas1, $valor1);
+inserirDadosVendas($conn, 1, $vendas1, $valor1);
 
 $vendas2 = "Fones";
 $valor2 = 150;
-inserirDadosVendas($conn, $vendas2, $valor2);
+inserirDadosVendas($conn, 2, $vendas2, $valor2);
 
-inserirDadosVendas($conn, "Smartphone", 1500);
+inserirDadosVendas($conn, 3, "Smartphone", 1500);
 
-inserirDadosVendas($conn, "Vestido", 120);
+inserirDadosVendas($conn, 4, "Vestido", 120);
+
+// função para deletar um cliente com base no ID
+function deletarDadosClientes($conn, $idCliente) {
+    $sql = "DELETE FROM clientes WHERE id_cliente = '$idCliente'"; // remove uma linha da tabela
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Cliente deletado com sucesso\n";
+
+        $sql2 = "DELETE FROM vendas WHERE id_cliente = '$idCliente'";
+
+        if ($conn->query($sql2) === TRUE) { // se o id inserido for encontrado, as vendas também serão removidas
+            echo "Vendas relacionadas ao cliente deletado também foram removidas";
+        }
+    
+    } else {
+        echo "Erro ao deletar, verifique o id";
+    }
+}
+
+deletarDadosClientes($conn, 1);
 ?>

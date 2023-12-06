@@ -79,5 +79,25 @@ inserirDadosFornecedores($conn, "Empresa B", "contato@empresaB.com");
 inserirDadosCompras($conn, 1, "Peças de Computador", 100);
 inserirDadosCompras($conn, 2, "Material de Escritório", 500);
 
+// função para deletar um fornecedor com base no ID
+function deletarDadosFornecedores($conn, $idFornecedor) {
+    $sql = "DELETE FROM fornecedores WHERE id_fornecedor = '$idFornecedor'"; // remove uma linha da tabela
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Fornecedor deletado com sucesso\n";
+
+        $sql2 = "DELETE FROM compras WHERE id_fornecedor = '$idFornecedor'";
+
+        if ($conn->query($sql2) === TRUE) { // se o id inserido for encontrado, as compras também serão removidas
+            echo "Compras relacionadas ao fornecedor deletado também foram removidas";
+        }
+    
+    } else {
+        echo "Erro ao deletar, verifique o id";
+    }
+}
+
+deletarDadosFornecedores($conn, 1);
+
 $conn->close();
 ?>

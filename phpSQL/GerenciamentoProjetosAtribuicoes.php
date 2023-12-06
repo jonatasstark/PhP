@@ -89,4 +89,24 @@ inserirDadosAtribuicoes($conn, $idprojeto1, $idfuncionario1);
 $idprojeto2 = 2;
 $idfuncionario2 = 2;
 inserirDadosAtribuicoes($conn, $idprojeto2, $idfuncionario2);
+
+// função para deletar um projeto com base no ID
+function deletarDadosProjetos($conn, $idProjeto) {
+    $sql = "DELETE FROM projetos WHERE id_projeto = '$idProjeto'"; // remove uma linha da tabela
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Projeto deletado com sucesso\n";
+
+        $sql2 = "DELETE FROM atribuicoes WHERE id_atribuicao = '$idProjeto'";
+
+        if ($conn->query($sql2) === TRUE) { // se o id inserido for encontrado, as atribuições também serão removidas
+            echo "Atribuições relacionadas ao projeto deletado também foram removidas";
+        }
+    
+    } else {
+        echo "Erro ao deletar, verifique o id";
+    }
+}
+
+deletarDadosProjetos($conn, 1);
 ?>

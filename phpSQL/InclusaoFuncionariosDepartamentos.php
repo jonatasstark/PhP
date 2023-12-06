@@ -89,4 +89,24 @@ inserirDadosDepartamentos($conn, $departamento1);
 
 $departamento2 = "Recursos Humanos";
 inserirDadosDepartamentos($conn, $departamento2);
+
+// função para deletar um funcionario com base no ID
+function deletarDadosFuncionarios($conn, $idFuncionario) {
+    $sql = "DELETE FROM funcionarios WHERE id_funcionario = '$idFuncionario'"; // remove uma linha da tabela
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Funcionario deletado com sucesso\n";
+
+        $sql2 = "DELETE FROM departamentos WHERE id_departamento = '$idFuncionario'";
+
+        if ($conn->query($sql2) === TRUE) { // se o id inserido for encontrado, os departamentos também serão removidos
+            echo "Departamentos relacionados ao funcionario deletado também foram removidos";
+        }
+    
+    } else {
+        echo "Erro ao deletar, verifique o id";
+    }
+}
+
+deletarDadosFuncionarios($conn, 1);
 ?>
